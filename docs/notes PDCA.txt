@@ -1,0 +1,62 @@
+#11/10/2022
+
+Livrables : kit de ruche connectée, appli IHM
+
+Méthodo PDCA
+
+Clients potentiels : 
+	CESI bat. 1 toit - bat. plateforme 4e, 
+	Mairie de Nanterre, 
+	Beeosphere
+
+Objectif : suivi pour améliorer la production de l'apiculteur
+
+Planification
+
+	Contexte : suivi pour améliorer la production/protection/gestion du rucher de l'apiculteur
+		Critères : géolocalisation, climat
+	
+	Périmètre : éléments de capteur : T° int. ext. , poids, GPS, hygro int. ext., cellule photosensible (ensoleillement), vent
+		Environnement : ville, montagne, campagne (problèmatique réseaux)
+		Pour le kit
+		Une appli web/mobile/responsive
+	
+	Enjeux (vision projet) : 
+		gérer l'apprehension de la technologie (vieux apiculteurs) => formation, tablette dédiée, FAQ...
+		Contrer les refractaires (conduite du changement)
+	
+	
+	Livrables : 
+		kit ruche connectée(+tablette dédiée)
+		appli web/mobile/responsive
+		formation, installation (ressources/environnement/maintenance, info ruches matériel)
+	
+		
+	KPI : 
+		Test machine => ruche => capteur
+			Calibrage capteurs
+			Tablette => reseaux
+			Charge => stockage
+				   => applicatif
+			
+		Satisfaction client
+	
+	Ressources : 
+		google
+	
+	
+	
+	Contraintes : 
+		dates clés données décembre + soutenance
+		livrables intermédiaires (notes)
+		capteurs et environnement (eau, soleil...) pas de capteurs à trous : sondes, pas DHT 12 || 24, DB18S20
+		bio : pas de polluants
+		modèle de ruche Dadant (abeilles Dadant ou abeilles noires)
+		cout de production du kit <= 100€, kit adaptable sur ruche Dadant
+		disponibilté réseau
+	
+	
+	Budget :
+		90.000 € avec rémunération
+		2000 € hors rémunération => kit + appli
+
