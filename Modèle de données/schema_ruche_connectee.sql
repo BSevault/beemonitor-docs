@@ -7,6 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema ruche_connectee
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `ruche_connectee` ;
 
 -- -----------------------------------------------------
 -- Schema ruche_connectee
@@ -15,11 +16,11 @@ CREATE SCHEMA IF NOT EXISTS `ruche_connectee` DEFAULT CHARACTER SET utf8 ;
 USE `ruche_connectee` ;
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`Utilisateur`
+-- Table `ruche_connectee`.`utilisateur`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`Utilisateur` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`utilisateur` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Utilisateur` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`utilisateur` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NOT NULL,
   `prenom` VARCHAR(45) NOT NULL,
@@ -35,11 +36,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`Rucher`
+-- Table `ruche_connectee`.`rucher`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`Rucher` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`rucher` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Rucher` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`rucher` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
   `latitude` DECIMAL(6,4) NOT NULL,
@@ -48,23 +49,23 @@ CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Rucher` (
   `date_fin_rucher` DATE NULL,
   `commentaire` TEXT NULL,
   `is_active` TINYINT NULL,
-  `id_utilisateur` INT UNSIGNED NOT NULL,
+  `utilisateur_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Rucher_Utilisateur1_idx` (`id_utilisateur` ASC) VISIBLE,
-  CONSTRAINT `fk_Rucher_Utilisateur1`
-    FOREIGN KEY (`id_utilisateur`)
-    REFERENCES `ruche_connectee`.`Utilisateur` (`id`)
+  INDEX `fk_rucher_utilisateur1_idx` (`utilisateur_id` ASC) VISIBLE,
+  CONSTRAINT `fk_rucher_utilisateur1`
+    FOREIGN KEY (`utilisateur_id`)
+    REFERENCES `ruche_connectee`.`utilisateur` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`Ruche`
+-- Table `ruche_connectee`.`ruche`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`Ruche` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`ruche` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Ruche` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`ruche` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
   `latitude` DECIMAL(8,6) NOT NULL,
@@ -83,11 +84,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`Capteur`
+-- Table `ruche_connectee`.`capteur`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`Capteur` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`capteur` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Capteur` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`capteur` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ref` VARCHAR(45) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
@@ -95,27 +96,27 @@ CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Capteur` (
   `id_ruche` INT UNSIGNED NULL,
   `id_rucher` INT UNSIGNED NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_CapteurUnitaire_Ruche1_idx` (`id_ruche` ASC) VISIBLE,
-  INDEX `fk_CapteurUnitaire_Rucher1_idx` (`id_rucher` ASC) VISIBLE,
-  CONSTRAINT `fk_CapteurUnitaire_Ruche1`
+  INDEX `fk_capteur_ruche1_idx` (`id_ruche` ASC) VISIBLE,
+  INDEX `fk_capteur_rucher1_idx` (`id_rucher` ASC) VISIBLE,
+  CONSTRAINT `fk_capteur_ruche1`
     FOREIGN KEY (`id_ruche`)
-    REFERENCES `ruche_connectee`.`Ruche` (`id`)
+    REFERENCES `ruche_connectee`.`ruche` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CapteurUnitaire_Rucher1`
+  CONSTRAINT `fk_capteur_rucher1`
     FOREIGN KEY (`id_rucher`)
-    REFERENCES `ruche_connectee`.`Rucher` (`id`)
+    REFERENCES `ruche_connectee`.`rucher` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`Mesure`
+-- Table `ruche_connectee`.`mesure`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`Mesure` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`mesure` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Mesure` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`mesure` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `valeur` DECIMAL(7,4) NOT NULL,
   `date_mesure` DATE NOT NULL,
@@ -123,47 +124,47 @@ CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Mesure` (
   `unite` VARCHAR(45) NOT NULL,
   `id_capteur` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Mesure_CapteurUnitaire1_idx` (`id_capteur` ASC) VISIBLE,
-  CONSTRAINT `fk_Mesure_CapteurUnitaire1`
+  INDEX `fk_mesure_capteur1_idx` (`id_capteur` ASC) VISIBLE,
+  CONSTRAINT `fk_mesure_capteur1`
     FOREIGN KEY (`id_capteur`)
-    REFERENCES `ruche_connectee`.`Capteur` (`id`)
+    REFERENCES `ruche_connectee`.`capteur` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`Rucher_has_Ruche`
+-- Table `ruche_connectee`.`rucher_has_ruche`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`Rucher_has_Ruche` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`rucher_has_ruche` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`Rucher_has_Ruche` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`rucher_has_ruche` (
   `id_rucher` INT UNSIGNED NOT NULL,
   `id_ruche` INT UNSIGNED NOT NULL,
   `date_mise_en_place` DATE NOT NULL,
   `date_enlevement` DATE NULL,
   PRIMARY KEY (`id_rucher`, `id_ruche`),
-  INDEX `fk_Rucher_has_Ruche_Ruche1_idx` (`id_ruche` ASC) VISIBLE,
-  INDEX `fk_Rucher_has_Ruche_Rucher1_idx` (`id_rucher` ASC) VISIBLE,
-  CONSTRAINT `fk_Rucher_has_Ruche_Rucher1`
+  INDEX `fk_rucher_has_ruche_ruche1_idx` (`id_ruche` ASC) VISIBLE,
+  INDEX `fk_rucher_has_ruche_rucher1_idx` (`id_rucher` ASC) VISIBLE,
+  CONSTRAINT `fk_rucher_has_ruche_rucher1`
     FOREIGN KEY (`id_rucher`)
-    REFERENCES `ruche_connectee`.`Rucher` (`id`)
+    REFERENCES `ruche_connectee`.`rucher` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Rucher_has_Ruche_Ruche1`
+  CONSTRAINT `fk_rucher_has_ruche_ruche1`
     FOREIGN KEY (`id_ruche`)
-    REFERENCES `ruche_connectee`.`Ruche` (`id`)
+    REFERENCES `ruche_connectee`.`ruche` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ruche_connectee`.`ConfigAlerte`
+-- Table `ruche_connectee`.`config_alerte`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ruche_connectee`.`ConfigAlerte` ;
+DROP TABLE IF EXISTS `ruche_connectee`.`config_alerte` ;
 
-CREATE TABLE IF NOT EXISTS `ruche_connectee`.`ConfigAlerte` (
+CREATE TABLE IF NOT EXISTS `ruche_connectee`.`config_alerte` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `type_alerte` VARCHAR(45) NOT NULL,
   `limite_haute` DECIMAL(5,2) NULL,
@@ -173,10 +174,10 @@ CREATE TABLE IF NOT EXISTS `ruche_connectee`.`ConfigAlerte` (
   `intervalle_unite` VARCHAR(16) NULL,
   `id_capteur` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_ConfigAlerte_CapteurUnitaire1_idx` (`id_capteur` ASC) VISIBLE,
-  CONSTRAINT `fk_ConfigAlerte_CapteurUnitaire1`
+  INDEX `fk_config_alerte_capteur1_idx` (`id_capteur` ASC) VISIBLE,
+  CONSTRAINT `fk_config_alerte_capteur`
     FOREIGN KEY (`id_capteur`)
-    REFERENCES `ruche_connectee`.`Capteur` (`id`)
+    REFERENCES `ruche_connectee`.`capteur` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
