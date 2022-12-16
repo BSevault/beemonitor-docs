@@ -1,0 +1,46 @@
+## Lot 1 ##
+	
+	# Choix des capteurs
+		*Capteurs unitaires (/ruche)
+			T°
+			hygro
+			poids
+			
+		*Capteurs externes : infos météo (/rucher)
+			T°
+			hygro
+			pression atmosphérique
+			luminosité / ensoleillement
+		
+	# Modelisation de données
+		A définir
+		* table alertes/seuil
+	
+	# Choix architecture
+		modèle en couches avec webservices REST
+		
+	# Mise en oeuvre BDD
+		SGBD => à définir (reco: PostgreSQL)
+	
+	# Développement back-end
+		Techno à définir (reco: Java/Spring)
+		
+	# Développement front-end
+		Techno à définir (React / *Angular* / Vue)
+	
+	# Mode d'alimentation électrique
+		A définir (batterie / *prise secteur*)
+	
+	# Méthode de connection
+		capteur => arduino => appli via réseau
+	
+
+## Lot 2 ##
+
+	# Caméra
+		Détection d'intrusion
+		Analyse comportement abeilles
+		
+	# GPS
+		Réference puce GPS à définir
+		Alimentation à définir

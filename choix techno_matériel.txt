@@ -1,0 +1,30 @@
+### Techno ###
+
+
+
+
+
+
+
+### Matériel ###
+
+Capteurs ruche
+	T° - humidité: 
+		SEN 0546: https://www.gotronic.fr/art-sonde-de-t-et-d-humidite-i2c-sen0546-35758.htm
+		SEN 0227: https://www.gotronic.fr/art-sonde-d-humidite-et-de-temperature-sen0227-27842.htm#complte_desc
+		
+	Pression: 
+		SFE RB-Spa-488: https://eu.robotshop.com/fr/products/sfe-load-sensor-50kg
+	
+	
+Capteurs extérieurs: 
+	T° - humidité
+		DHT22: https://www.gotronic.fr/art-capteur-d-humidite-et-de-t-grove-101020019-18964.htm
+	
+	Baromètre: 
+		Grove 101020812: https://www.gotronic.fr/art-barometre-de-precision-grove-101020812-31771.htm
+	
+		
+Microcontroleur: 
+	Arduino RP2040: https://www.gotronic.fr/art-arduino-nano-rp2040-connect-33599.htm
+	Arduino UNO Wifi: https://www.gotronic.fr/art-carte-arduino-uno-wifi-v2-abx00021-29092.htm
