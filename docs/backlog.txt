@@ -34,6 +34,8 @@
 	# Méthode de connection
 		capteur => arduino => appli via réseau
 	
+	#Capteur d'ouverture de ruche
+	
 
 ## Lot 2 ##
 
